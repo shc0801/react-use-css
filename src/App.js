@@ -1,26 +1,32 @@
-import React, { Component } from "react";
-import "./App.css";
-
-class App extends Component {
-    render() {
-        const style = {
-            width: "1800px",
-            height: "500px",
-
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-
-            margin: "0 auto",
-            border: "1px solid black",
+import React, { useState, useEffect } from "react";
+function App(props) {
+    const [count, setCount] = useState(0);
+    useEffect(() => {
+        console.log(props, count);
+        return () => {
+            console.log("Clean up");
         };
+    }, [count]);
 
-        return (
-            <div style={style}>
-                <h1>css style 사용하기</h1>
-            </div>
-        );
-    }
+    const style = {
+        width: "1800px",
+        height: "500px",
+        
+        fontSize: "100px",
+
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+
+        margin: "0 auto",
+        border: "1px solid black",
+    };
+
+    return (
+        <button style={style} onClick={(e) => setCount(count + 1)}>
+            {count}
+        </button>
+    );
 }
 
 export default App;
